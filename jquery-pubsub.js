@@ -17,6 +17,9 @@
  *
  * Usage
  * http://jsfiddle.net/carylandholt/ke79e/
+ * $.subscribe('eventName', handler);
+ * $.publish('eventName', handlerArgs);
+ * $.unsubscribe('eventName');
  */
 
 /*global jQuery*/
