@@ -22,22 +22,36 @@
  * $.unsubscribe('eventName');
  */
 
-/*global jQuery*/
+/*global define*/
 
-(function ($) {
+define('pubsub', ['jquery', '$document', 'proxied-events'], function ($, $document, proxiedEvents) {
 	'use strict';
 
 	var $o = $({});
 
-	$.subscribe = function () {
+	function isProxiedEvent(item) {
+		return $.inArray(item, proxiedEvents) !== -1;
+	}
+
+	$.subscribe = function (topic) {
 		$o.on.apply($o, arguments);
+
+		if (isProxiedEvent(topic)) {
+			$document.on(topic, function () {
+				$.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
+			});
+		}
 	};
 
-	$.unsubscribe = function () {
+	$.unsubscribe = function (topic) {
 		$o.off.apply($o, arguments);
+
+		if (isProxiedEvent(topic)) {
+			$document.off(topic);
+		}
 	};
 
 	$.publish = function () {
 		$o.trigger.apply($o, arguments);
 	};
-}(jQuery));
+});
