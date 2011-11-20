@@ -27,31 +27,34 @@
 define('pubsub', ['jquery', '$document', 'proxied-events'], function ($, $document, proxiedEvents) {
 	'use strict';
 
-	var $o = $({});
-
 	function isProxiedEvent(item) {
 		return $.inArray(item, proxiedEvents) !== -1;
 	}
 
-	$.subscribe = function (topic) {
-		$o.on.apply($o, arguments);
+	var $o = $({}),
+		pubsub = {
+			subscribe: function (topic) {
+				$o.on.apply($o, arguments);
 
-		if (isProxiedEvent(topic)) {
-			$document.on(topic, function () {
-				$.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
-			});
-		}
-	};
+				if (isProxiedEvent(topic)) {
+					$document.on(topic, function () {
+						pubsub.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
+					});
+				}
+			},
 
-	$.unsubscribe = function (topic) {
-		$o.off.apply($o, arguments);
+			unsubscribe: function (topic) {
+				$o.off.apply($o, arguments);
 
-		if (isProxiedEvent(topic)) {
-			$document.off(topic);
-		}
-	};
+				if (isProxiedEvent(topic)) {
+					$document.off(topic);
+				}
+			},
 
-	$.publish = function () {
-		$o.trigger.apply($o, arguments);
-	};
+			publish: function () {
+				$o.trigger.apply($o, arguments);
+			}
+		};
+
+	return pubsub;
 });
