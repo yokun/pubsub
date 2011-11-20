@@ -24,7 +24,7 @@
 
 /*global define*/
 
-define('pubsub', ['jquery', '$document', 'proxied-events'], function ($, $document, proxiedEvents) {
+define(['jquery', '$document', 'proxied-events'], function ($, $document, proxiedEvents) {
 	'use strict';
 
 	function isProxiedEvent(item) {
