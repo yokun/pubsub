@@ -1,6 +1,6 @@
 /*!
  * jquery-pubsub
- * Version:  1.0.0
+ * Version:  1.1.0
  * Source:  https://github.com/CaryLandholt/jquery-pubsub
  *
  * Respectfully taken from Ben Alman's Gist https://gist.github.com/661855
@@ -20,11 +20,16 @@
  * $.subscribe('eventName', handler);
  * $.publish('eventName', handlerArgs);
  * $.unsubscribe('eventName');
+ *
+ * Dependencies
+ * jQuery
+ * https://github.com/CaryLandholt/doc
+ * https://github.com/CaryLandholt/proxied-events
  */
 
 /*global define*/
 
-define(['jquery', '$document', 'proxied-events'], function ($, $document, proxiedEvents) {
+define(['jquery', 'doc', 'proxied-events'], function ($, $doc, proxiedEvents) {
 	'use strict';
 
 	function isProxiedEvent(item) {
@@ -37,7 +42,7 @@ define(['jquery', '$document', 'proxied-events'], function ($, $document, proxie
 				$o.on.apply($o, arguments);
 
 				if (isProxiedEvent(topic)) {
-					$document.on(topic, function () {
+					$doc.on(topic, function () {
 						pubsub.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
 					});
 				}
@@ -47,7 +52,7 @@ define(['jquery', '$document', 'proxied-events'], function ($, $document, proxie
 				$o.off.apply($o, arguments);
 
 				if (isProxiedEvent(topic)) {
-					$document.off(topic);
+					$doc.off(topic);
 				}
 			},
 
