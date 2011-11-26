@@ -32,6 +32,8 @@
 define(['jquery', 'doc', 'proxied-events'], function ($, $doc, proxiedEvents) {
 	'use strict';
 
+	proxiedEvents = proxiedEvents || [];
+
 	function isProxiedEvent(item) {
 		return $.inArray(item, proxiedEvents) !== -1;
 	}
