@@ -24,38 +24,39 @@
  * Dependencies
  * jQuery
  * https://github.com/CaryLandholt/doc
- * https://github.com/CaryLandholt/proxied-events
  */
 
 /*global define*/
 
-define(['jquery', 'doc', 'proxied-events'], function ($, $doc, proxiedEvents) {
+define(['jquery', 'doc'], function ($, $doc) {
 	'use strict';
 
-	proxiedEvents = proxiedEvents || [];
-
-	function isProxiedEvent(item) {
-		return $.inArray(item, proxiedEvents) !== -1;
+	function isCustomEvent(topic) {
+		return topic.charAt(0) === '/';
 	}
 
 	var $o = $({}),
 		pubsub = {
 			subscribe: function (topic) {
-				$o.on.apply($o, arguments);
-
-				if (isProxiedEvent(topic)) {
-					$doc.on(topic, function () {
-						pubsub.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
-					});
+				if (!isCustomEvent(topic)) {
+					if (arguments.length >= 3) {
+						$doc.on.apply($doc, arguments);
+					} else {
+						$doc.on(topic, function () {
+							pubsub.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
+						});
+					}
 				}
+
+				$o.on.apply($o, arguments);
 			},
 
 			unsubscribe: function (topic) {
-				$o.off.apply($o, arguments);
-
-				if (isProxiedEvent(topic)) {
-					$doc.off(topic);
+				if (!isCustomEvent(topic)) {
+					$doc.off.apply($doc, arguments);
 				}
+
+				$o.off.apply($o, arguments);
 			},
 
 			publish: function () {
