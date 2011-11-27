@@ -15,15 +15,16 @@
  * Description
  * A simple pub/sub implementation
  *
+ * Dependencies
+ * https://github.com/jrburke/requirejs
+ * https://github.com/jquery/jquery
+ * https://github.com/CaryLandholt/doc
+ *
  * Usage
  * http://jsfiddle.net/carylandholt/ke79e/
- * $.subscribe('eventName', handler);
- * $.publish('eventName', handlerArgs);
- * $.unsubscribe('eventName');
- *
- * Dependencies
- * jQuery
- * https://github.com/CaryLandholt/doc
+ * subscribe('topic', handler);
+ * publish('topic', handlerArgs);
+ * unsubscribe('topic');
  */
 
 /*global define*/
@@ -31,6 +32,7 @@
 define(['jquery', 'doc'], function ($, $doc) {
 	'use strict';
 
+	// treat topics with a preceeding slash as a custom event
 	function isCustomEvent(topic) {
 		return topic.charAt(0) === '/';
 	}
