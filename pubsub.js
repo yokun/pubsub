@@ -3,12 +3,7 @@
  * Version:  1.2.0
  * Source:  https://github.com/CaryLandholt/pubsub
  *
- * Respectfully taken from Ben Alman's Gist https://gist.github.com/661855
- * Added variable naming convention and JSLint options
- * jQuery Tiny Pub/Sub - v0.7 - 10/27/2011
- * http://benalman.com/
- * Copyright (c) 2011 "Cowboy" Ben Alman; Licensed MIT, GPL
- *
+ * Copyright (c) 2011 Cary Landholt
  * https://github.com/CaryLandholt
  * https://twitter.com/CaryLandholt
  *
@@ -16,15 +11,9 @@
  * A simple pub/sub implementation
  *
  * Dependencies
- * https://github.com/jrburke/requirejs
- * https://github.com/jquery/jquery
  * https://github.com/CaryLandholt/doc
- *
- * Usage
- * http://jsfiddle.net/carylandholt/ke79e/
- * subscribe('topic', handler);
- * publish('topic', handlerArgs);
- * unsubscribe('topic');
+ * https://github.com/jquery/jquery
+ * https://github.com/jrburke/requirejs
  */
 
 /*global define*/
