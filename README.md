@@ -16,15 +16,15 @@ There are two ways to subscribe to events.
 The following example shows taking a topic/event name and a handler function.
 The handler can be either a delegate method or anonymous function.
 
-	``` javascript
-	require(['pubsub'], function (pubsub) {
-		pubsub.subscribe('/my/custom/event', handler);
+``` javascript
+require(['pubsub'], function (pubsub) {
+	pubsub.subscribe('/my/custom/event', handler);
 
-		// or
+	// or
 
-		pubsub.subscribe('jQueryEvent', handler);
-	});
-	```
+	pubsub.subscribe('jQueryEvent', handler);
+});
+```
 
 
 #### Events, Selectors, and Handlers
@@ -32,34 +32,34 @@ The handler can be either a delegate method or anonymous function.
 The following example will handle the click event of the anchor tag.
 The handler can be either a delegate method or anonymous function.
 
-	``` javascript
-	require(['pubsub'], function (pubsub) {
-		pubsub.subscribe('click', 'a', handler);
-	});
-	```
+``` javascript
+require(['pubsub'], function (pubsub) {
+	pubsub.subscribe('click', 'a', handler);
+});
+```
 
 
 ### Publish
 
 Extra arguments may be provided when publishing events:
 
-	``` javascript
-	require(['pubsub'], function (pubsub) {
-		pubsub.publish('/my/custom/event');
+``` javascript
+require(['pubsub'], function (pubsub) {
+	pubsub.publish('/my/custom/event');
 
-		// or
+	// or
 
-		pubsub.publish('jQueryEvent');
+	pubsub.publish('jQueryEvent');
 
-		// or
+	// or
 
-		pubsub.publish('/my/custom/event', args);
+	pubsub.publish('/my/custom/event', args);
 
-		// or
+	// or
 
-		pubsub.publish('jQueryEvent', args);
-	});
-	```
+	pubsub.publish('jQueryEvent', args);
+});
+```
 
 Click events, for example, will be published automatically.
 
@@ -68,25 +68,24 @@ Click events, for example, will be published automatically.
 
 Unsubscribing events can be accomplished in two ways, unsubscribe the topic completely, or unsubscribe a handler from the topic.
 
-	``` javascript
-	require(['pubsub'], function (pubsub) {
-		pubsub.unsubscribe('/my/custom/event');
+``` javascript
+require(['pubsub'], function (pubsub) {
+	pubsub.unsubscribe('/my/custom/event');
 
-		// or
+	// or
 
-		pubsub.unsubscribe('jQueryEvent');
+	pubsub.unsubscribe('jQueryEvent');
 
-		// or to unsubscribe a single handler for the topic,
-		// leaving others remaining, use:
+	// or to unsubscribe a single handler for the topic,
+	// leaving others remaining, use:
 
-		pubsub.unsubscribe('/my/custom/event', handler);
+	pubsub.unsubscribe('/my/custom/event', handler);
 
-		// or
+	// or
 
-		pubsub.unsubscribe('jQueryEvent', handler);
-	});
-	```
-
+	pubsub.unsubscribe('jQueryEvent', handler);
+});
+```
 
 
 ## Versioning
