@@ -27,14 +27,14 @@ define(['jquery', 'doc'], function ($, $doc) {
 	}
 
 	var $o = $({}),
-		pubsub = {
+		module = {
 			subscribe: function (topic) {
 				if (!isCustomEvent(topic)) {
 					if (arguments.length >= 3) {
 						$doc.on.apply($doc, arguments);
 					} else {
 						$doc.on(topic, function () {
-							pubsub.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
+							module.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
 						});
 					}
 				}
@@ -55,5 +55,5 @@ define(['jquery', 'doc'], function ($, $doc) {
 			}
 		};
 
-	return pubsub;
+	return module;
 });
