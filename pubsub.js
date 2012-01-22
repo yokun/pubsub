@@ -3,7 +3,7 @@
  * Version:  1.2.0
  * Source:  https://github.com/CaryLandholt/pubsub
  *
- * Copyright (c) 2011 Cary Landholt
+ * Copyright (c) 2012 Cary Landholt
  * https://github.com/CaryLandholt
  * https://twitter.com/CaryLandholt
  *
