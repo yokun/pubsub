@@ -89,13 +89,13 @@ require(['jquery', 'pubsub', 'qunit'], function ($, pubsub) {
 			test2TriggeredCount = 0;
 
 		function handler1() {
-			testTriggeredCount = testTriggeredCount +1;
-			test1TriggeredCount = test1TriggeredCount +1;
+			testTriggeredCount = testTriggeredCount + 1;
+			test1TriggeredCount = test1TriggeredCount + 1;
 		}
 
 		function handler2() {
-			testTriggeredCount = testTriggeredCount +1;
-			test2TriggeredCount = test2TriggeredCount +1;
+			testTriggeredCount = testTriggeredCount + 1;
+			test2TriggeredCount = test2TriggeredCount + 1;
 		}
 
 		subscribe('/test', handler1);
