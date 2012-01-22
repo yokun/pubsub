@@ -27,6 +27,7 @@ define(['jquery', 'doc'], function ($, $doc) {
 	}
 
 	var $o = $({}),
+		slice = [].slice,
 		module = {
 			subscribe: function (topic) {
 				if (!isCustomEvent(topic)) {
@@ -34,7 +35,7 @@ define(['jquery', 'doc'], function ($, $doc) {
 						$doc.on.apply($doc, arguments);
 					} else {
 						$doc.on(topic, function () {
-							module.publish.apply(this, [topic, Array.prototype.slice.call(arguments, 1)]);
+							module.publish.apply(this, [topic, slice.call(arguments, 1)]);
 						});
 					}
 				}
