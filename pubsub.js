@@ -1,6 +1,6 @@
 /*!
  * pubsub
- * Version:  1.2.1
+ * Version:  1.2.2
  * Source:  https://github.com/CaryLandholt/pubsub
  *
  * Copyright (c) 2012 Cary Landholt
@@ -21,40 +21,22 @@
 define(['jquery', 'doc'], function ($, $doc) {
 	'use strict';
 
-	// treat topics with a preceeding slash as a custom event
-	function isCustomEvent(topic) {
-		return topic.charAt(0) === '/';
-	}
-
 	var $o = $({}),
-		slice = [].slice,
-		module = {
-			subscribe: function (topic) {
-				if (!isCustomEvent(topic)) {
-					if (arguments.length >= 3) {
-						$doc.on.apply($doc, arguments);
-					} else {
-						$doc.on(topic, function () {
-							module.publish.apply(this, [topic, slice.call(arguments, 1)]);
-						});
-					}
-				}
-
-				$o.on.apply($o, arguments);
-			},
-
-			unsubscribe: function (topic) {
-				if (!isCustomEvent(topic)) {
-					$doc.off.apply($doc, arguments);
-				}
-
-				$o.off.apply($o, arguments);
-			},
-
-			publish: function () {
-				$o.trigger.apply($o, arguments);
-			}
+		subscribe = function () {
+			$doc.on.apply($doc, arguments);
+			$o.on.apply($o, arguments);
+		},
+		unsubscribe = function () {
+			$doc.off.apply($doc, arguments);
+			$o.off.apply($o, arguments);
+		},
+		publish = function () {
+			$o.trigger.apply($o, arguments);
 		};
 
-	return module;
+	return {
+		subscribe: subscribe,
+		unsubscribe: unsubscribe,
+		publish: publish
+	};
 });
