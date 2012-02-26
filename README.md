@@ -90,7 +90,7 @@ require(['pubsub'], function (pubsub) {
 
 ## Versioning
 
-For transparency and insight into our release cycle, and for striving to maintain backwards compatibility, pubsub will be maintained under the Semantic Versioning guidelines as much as possible.
+For transparency and insight into our release cycle, and for striving to maintain backwards compatibility, this module will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
