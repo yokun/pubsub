@@ -1,6 +1,6 @@
 /*!
  * pubsub
- * Version:  1.2.2
+ * Version:  1.3.0
  * Source:  https://github.com/CaryLandholt/pubsub
  *
  * Copyright (c) 2012 Cary Landholt
