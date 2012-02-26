@@ -19,3 +19,6 @@
 [submodule "test/submodules/window"]
 	path = test/submodules/window
 	url = git://github.com/CaryLandholt/window.git
+[submodule "test/submodules/win"]
+	path = test/submodules/win
+	url = git://github.com/CaryLandholt/win.git

@@ -11,6 +11,7 @@
 			pubsub: '../../pubsub',
 			qunit: 'patches/qunit-module-patch',
 			'qunit-official': 'libs/qunit',
+			win: 'core/win',
 			window: 'core/window'
 		}
 	});
