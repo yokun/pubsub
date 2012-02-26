@@ -14,6 +14,7 @@
  * https://github.com/CaryLandholt/doc
  * https://github.com/jquery/jquery
  * https://github.com/jrburke/requirejs
+ * https://github.com/CaryLandholt/win
 ###
 
 ###global define###
