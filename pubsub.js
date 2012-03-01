@@ -20,24 +20,27 @@
 */
 define(['jquery', 'doc', 'win'], function($, $doc, $win) {
   'use strict';
-  var $o, publish, subscribe, unsubscribe;
+  var $o, callback, publish, subscribe, unsubscribe;
   $o = $({});
+  callback = function($el, params) {
+    return $el.on(params.topic, function(e) {
+      return $(params.selector).each(function() {
+        e.currentTarget = this;
+        return params.handler.call(this, e);
+      });
+    });
+  };
   subscribe = function(topic, selector, handler) {
-    var normalizedTopic;
-    normalizedTopic = topic.toLowerCase();
+    var normalizedTopic, params;
     if (arguments.length === 3) {
-      if (normalizedTopic === 'ready') {
-        $doc.on(topic, function() {
-          return $(selector).each(handler);
-        });
-        return;
-      }
-      if (normalizedTopic === 'resize') {
-        $win.on(topic, function() {
-          return $(selector).each(handler);
-        });
-        return;
-      }
+      normalizedTopic = topic.toLowerCase();
+      params = {
+        topic: topic,
+        selector: selector,
+        handler: handler
+      };
+      if (normalizedTopic === 'ready') return callback($doc, params);
+      if (normalizedTopic === 'resize') return callback($win, params);
     }
     $doc.on.apply($doc, arguments);
     return $o.on.apply($o, arguments);

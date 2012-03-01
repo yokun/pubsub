@@ -24,19 +24,20 @@ define ['jquery', 'doc', 'win'], ($, $doc, $win) ->
 
 	$o = $ {}
 
+	callback = ($el, params) ->
+		$el.on params.topic, (e) ->
+			$(params.selector).each () ->
+				e.currentTarget = @
+
+				params.handler.call @, e
+
 	subscribe = (topic, selector, handler) ->
-		normalizedTopic = topic.toLowerCase()
-		
 		if arguments.length is 3
-			if normalizedTopic is 'ready'
-				$doc.on topic, ->
-					$(selector).each handler
-				return
-				
-			if normalizedTopic is 'resize'
-				$win.on topic, ->
-					$(selector).each handler
-				return
+			normalizedTopic = topic.toLowerCase()
+			params = {topic, selector, handler}
+
+			return callback $doc, params if normalizedTopic is 'ready'
+			return callback $win, params if normalizedTopic is 'resize'
 		
 		$doc.on.apply $doc, arguments
 		$o.on.apply $o, arguments
